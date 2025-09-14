@@ -1,4 +1,5 @@
-"awards": [
+{
+  "awards": [
     {
       "title": "Nobel Prize in Physics",
       "date": "1921-11-01",
@@ -100,4 +101,5 @@
       "summary": "Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.",
       "highlights": ["Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march.", "Men of the year 2014 by Time magazine"]
     }
-  ],
+  ]
+}
