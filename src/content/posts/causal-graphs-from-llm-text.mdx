@@ -1,0 +1,28 @@
+---
+title: "Extracting Causal Graphs from Text with LLMs — and Validating Them"
+date: "2026-05-24"
+excerpt: "How to use LLM-extracted causal structure as a hypothesis, then validate it against observational data using do-calculus."
+tags: ["Causal Inference", "LLM", "Research", "Production"]
+---
+
+## The Promise of Text-to-Graph Extraction
+
+Large Language Models (LLMs) excel at parsing unstructured text (e.g., incident logs, medical case files) and extracting semantic relationships. However, treating LLM-extracted relations directly as a causal Directed Acyclic Graph (DAG) <Math math="\mathcal{G}" /> is dangerous. LLMs identify associations, not necessarily causal mechanisms.
+
+To bridge this gap, we treat the LLM's output as a *prior causal hypothesis* and validate its structural alignment against observational data <Math math="\mathcal{D}" />.
+
+## Validating the Graph via D-Separation
+
+A causal DAG <Math math="\mathcal{G}" /> implies a specific set of conditional independence relations. Under the assumption of causal faithfulness (Spirtes et al. 2000), if variables <Math math="X" /> and <Math math="Y" /> are d-separated by a conditioning set <Math math="Z" /> in the graph <Math math="\mathcal{G}" />, then they must be conditionally independent in the probability distribution:
+
+<Math math="X \perp\!\!\!\perp Y \mid Z" block />
+
+We run statistical tests (e.g., Fisher’s Z-transform for linear Gaussian systems, or G-tests for discrete variables) on the observational dataset <Math math="\mathcal{D}" /> for all d-separation statements in the graph. Any significant deviation (e.g., rejecting independence where the graph predicts it) invalidates the DAG, prompting structural corrections.
+
+## Interventional Validation with do-Calculus
+
+Once we establish a validated graph <Math math="\mathcal{G}" />, we can estimate the causal effect of an action <Math math="\text{do}(X)" /> on target <Math math="Y" />. Pearl (2009) formulated the **Backdoor Adjustment** to estimate this effect using only observational data when a sufficient set <Math math="Z" /> of confounders satisfies the backdoor criterion:
+
+<Math math="P(Y \mid \text{do}(X = x)) = \sum_{z} P(Y \mid X = x, Z = z) P(Z = z)" block />
+
+If the backdoor set <Math math="Z" /> contains variables that the LLM missed, our causal estimates will remain biased. Thus, we validate the graph by confirming that the backdoor-adjusted estimates match historical A/B test results.

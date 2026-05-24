@@ -1,26 +1,114 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base palette — deeper, richer darks */
+  --color-bg-base: #060910;
+  --color-bg-surface: #0D1117;
+  --color-bg-card: #111827;
+  --color-bg-card-hover: #161f2e;
+
+  /* Accent — slightly more vivid teal + violet */
+  --color-accent-primary: #0EB3A2;
+  --color-accent-secondary: #7C6FE8;
+  --color-accent-gold: #C9A84C;
+
+  /* Text */
+  --color-text-primary: #F0F6FC;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #6E7F96;
+
+  /* Borders */
+  --color-border-subtle: #1C2A3A;
+  --color-border-medium: #253348;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg-base: var(--color-bg-base);
+  --color-bg-surface: var(--color-bg-surface);
+  --color-bg-card: var(--color-bg-card);
+  --color-bg-card-hover: var(--color-bg-card-hover);
+  --color-accent-primary: var(--color-accent-primary);
+  --color-accent-secondary: var(--color-accent-secondary);
+  --color-accent-gold: var(--color-accent-gold);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+  --color-border-subtle: var(--color-border-subtle);
+  --color-border-medium: var(--color-border-medium);
+  --font-display: var(--font-syne);
+  --font-body: var(--font-dm-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  @apply scroll-smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-bg-base text-text-primary font-body;
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection */
+::selection {
+  background: rgba(14, 179, 162, 0.25);
+  color: #F0F6FC;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-medium);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-primary);
+}
+
+/* Focus rings */
+*:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Smooth transitions for interactive elements */
+button, a, input, textarea {
+  @apply transition-colors duration-200;
+}
+
+/* Utility: gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #0EB3A2 0%, #7C6FE8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Utility: subtle glass card */
+.glass-card {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(28, 42, 58, 0.8);
+}
+
+/* KaTeX overrides — match our color palette */
+.katex {
+  font-size: 1.05em;
+  color: var(--color-text-primary);
+}
+.katex-display {
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  background: rgba(14, 179, 162, 0.04);
+  border: 1px solid rgba(14, 179, 162, 0.15);
+  border-radius: 10px;
+  overflow-x: auto;
 }

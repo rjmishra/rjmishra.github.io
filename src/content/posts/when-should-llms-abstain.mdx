@@ -1,0 +1,30 @@
+---
+title: "Epistemic Abstention: When Production LLMs Should Refuse to Answer"
+date: "2026-05-24"
+excerpt: "A framework for calibrated uncertainty in enterprise LLM deployments — self-consistency thresholds, adversarial probing, and abstention policies."
+tags: ["LLM", "Epistemic AI", "Production", "Research"]
+---
+
+## Epistemic vs. Aleatoric Uncertainty
+
+When deploying Large Language Models (LLMs) in high-stakes domains—such as legal retrieval or clinical diagnostic routing—mistakes are highly asymmetrical. A hallucinated fact or confidence miscalibration can carry severe liability. To manage this risk, we must frame model reliability in terms of uncertainty.
+
+Specifically, we target **epistemic uncertainty** (uncertainty in the model's knowledge) rather than **aleatoric uncertainty** (stochastic noise). Our goal is to define an optimal decision rule where the model abstains:
+
+<Math math="f(x) = \begin{cases} y & \text{if } P(y \text{ is correct} \mid x) \ge \theta \\ \emptyset & \text{otherwise (abstain)} \end{cases}" block />
+
+## Quantifying Uncertainty via Self-Consistency
+
+We approximate epistemic confidence by sampling from the model's output distribution at elevated temperature <Math math="\tau > 0" />. Following Wang et al. (2022), we generate <Math math="k" /> independent reasoning paths and compute the entropy of the resulting answers:
+
+<Math math="H(Y \mid X) = -\sum_{y \in \mathcal{Y}} \hat{P}(y \mid X) \log \hat{P}(y \mid X)" block />
+
+Where <Math math="\hat{P}(y \mid X) = \frac{1}{k} \sum_{i=1}^k \mathbb{I}(y_i = y)" /> is the empirical probability of answer <Math math="y" />. Higher entropy indicates a flat distribution, signifying epistemic fragility.
+
+## Calibration and Platt Scaling
+
+Raw self-consistency counts are poorly calibrated. To map the self-consistency signals and token-level log-likelihoods to a true probability of correctness, we apply **Platt Scaling** (Platt 1999). We train a logistic calibration layer on a small validation set of human-annotated outputs:
+
+<Math math="P(\text{correct} \mid S) = \frac{1}{1 + \exp(A \cdot S + B)}" block />
+
+Here, <Math math="S" /> is a feature vector containing consistency metrics, token entropy, and adversarial probe scores. Setting <Math math="\theta" /> based on calibrated output probabilities allows enterprise systems to guarantee a maximum error rate, successfully deciding when to route to human specialists.

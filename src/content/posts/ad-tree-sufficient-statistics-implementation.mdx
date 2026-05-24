@@ -1,0 +1,50 @@
+---
+title: "Implementing Moore-Lee AD-Trees for O(1) Sufficient Statistics in C++"
+date: "2026-05-24"
+excerpt: "A walkthrough of the AD-tree data structure for caching sufficient statistics in Bayesian network structure learning, with implementation tradeoffs."
+tags: ["C++", "Bayesian Networks", "Structure Learning", "Research"]
+---
+
+## The Challenge of Count Queries
+
+In Bayesian network structure learning, scoring a candidate Directed Acyclic Graph (DAG) using metrics like the Bayesian Information Criterion (BIC) or Bayesian Dirichlet equivalent (BDeu) requires calculating joint frequency counts over combinations of variables. The BIC score for a candidate structure $G$ and dataset $D$ is defined as:
+
+$$BIC(G \mid D) = \log P(D \mid G, \hat{\theta}) - \frac{d}{2} \log N$$
+
+where $\hat{\theta}$ represents the maximum likelihood estimates of the parameters, $d$ is the number of free parameters in the model, and $N$ is the number of samples. 
+
+To compute the likelihood term $P(D \mid G, \hat{\theta})$, we evaluate local conditional counts over each node $X_i$ and its parent set $\Pi_i$:
+
+<Math math="N_{ijk} = \sum_{m=1}^{N} \mathbb{I}(X_i^{(m)} = k, \Pi_i^{(m)} = j)" block />
+
+For a dataset of size $N$ and $d$ dimensions, a naive linear scan yields $O(N \cdot |\Pi_i|)$ per query. During heuristic structure search—such as simulated annealing or K2 search—we evaluate millions of parent sets. Caching counts in hash maps suffers from severe memory overhead and lookup degradation.
+
+## Enter the AD-Tree
+
+Moore and Lee (1998) introduced the **All-Dimension Tree (AD-tree)**, a static data structure that stores sufficient statistics in a cache-friendly, memory-efficient prefix tree. 
+
+An AD-tree alternates between two node types:
+1. **AD Nodes**: Represents a subset of records matching a specific instantiation of a variable subset. It stores the count and pointers to Vary Nodes.
+2. **Vary Nodes**: Represents a single variable splits. It contains pointers to sub-AD nodes corresponding to each discrete state of that variable.
+
+To avoid memory explosion, the structure employs **Leaf Lists** (storing record indices directly when counts fall below a threshold <Math math="k_{min}" />) and **Most Common Value (MCV)** pruning. The count query complexity becomes:
+
+<Math math="O(1) \quad \text{for nodes above the leaf threshold}" block />
+
+## C++ Implementation Trade-offs
+
+In a high-performance C++20 implementation, memory layout is paramount. We optimize Vary Node arrays using contiguous memory structures rather than pointer-heavy lists:
+
+```cpp
+struct ADNode {
+    uint32_t count;
+    std::vector<VaryNode> vary_nodes;
+};
+
+struct VaryNode {
+    std::vector<std::unique_ptr<ADNode>> child_ad_nodes;
+    uint8_t most_common_value;
+};
+```
+
+By packing memory layouts and using bit-packed representations for leaf lists, we minimize L1/L2 cache misses. This provides a massive throughput increase over generic JVM or Python implementations when traversing millions of score evaluations.
