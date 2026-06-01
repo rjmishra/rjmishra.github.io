@@ -33,18 +33,21 @@ export default function BlogClient({ posts }: BlogClientProps) {
   return (
     <main className="flex-1 bg-bg-base">
       {/* Page Header */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto mb-16">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-4 mb-12"
+            className="space-y-4 mb-16"
           >
-            <h1 className="font-display text-5xl md:text-6xl font-bold text-text-primary">
+            <div className="section-badge-primary mb-4">
+              Articles
+            </div>
+            <h1 className="page-title section-title-accent">
               Thinking Out Loud
             </h1>
-            <p className="font-body text-lg text-text-muted max-w-2xl">
+            <p className="body-copy-lg max-w-2xl">
               Writing about production AI systems, decision intelligence, causal inference, and the frontiers of machine learning.
             </p>
           </motion.div>
@@ -86,9 +89,9 @@ export default function BlogClient({ posts }: BlogClientProps) {
                   whileHover={{ y: -4 }}
                 >
                   <Link href={`/blog/${post.slug}`}>
-                    <div className="group h-full px-6 py-8 rounded-lg bg-bg-card border border-border-subtle hover:border-l-2 hover:border-l-accent-primary transition-all duration-300 cursor-pointer hover:bg-bg-card/80 flex flex-col">
+                    <div className="group h-full px-6 py-8 rounded-lg bg-bg-card card-interactive flex flex-col">
                       {/* Title */}
-                      <h2 className="font-display text-xl font-bold text-text-primary mb-3 group-hover:text-accent-primary transition-colors duration-300">
+                      <h2 className="card-title mb-3 text-colorize">
                         {post.title}
                       </h2>
 
@@ -105,7 +108,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                       </div>
 
                       {/* Excerpt */}
-                      <p className="font-body text-sm text-text-muted leading-relaxed mb-4 flex-1">
+                      <p className="body-copy-muted mb-4 flex-1">
                         {post.excerpt}
                       </p>
 

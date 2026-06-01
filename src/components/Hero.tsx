@@ -144,37 +144,25 @@ export default function Hero() {
 
             {/* Headline */}
             <motion.div variants={itemVariants}>
-              <h1 className="font-display text-5xl md:text-6xl font-bold text-text-primary leading-tight">
+              <h1 className="page-title">
                 Building Rigorous AI — From Research to Production
               </h1>
             </motion.div>
 
             {/* Subheading */}
             <motion.div variants={itemVariants}>
-              <p className="font-body text-lg text-text-muted leading-relaxed max-w-lg">
+              <p className="body-copy-lg max-w-lg">
                 Data Science leader and ML researcher specializing in probabilistic graphical models, causal inference, and production LLM systems. 12+ years from statistical foundations to frontier AI engineering.
               </p>
             </motion.div>
 
             {/* CTA Buttons */}
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Link
-                href="/blog"
-                className="inline-flex items-center justify-center px-8 py-3 rounded-lg bg-accent-primary text-bg-base font-body font-semibold text-sm transition-all hover:bg-accent-primary/90 active:scale-95 duration-200"
-              >
-                Read My Thinking
-              </Link>
-              <Link
-                href="/projects"
-                className="inline-flex items-center justify-center px-8 py-3 rounded-lg border border-accent-primary/50 text-accent-primary font-body font-semibold text-sm transition-all hover:bg-accent-primary/10 active:scale-95 duration-200"
-              >
+              <Link href="/projects" className="btn-primary">
                 View Projects
               </Link>
-              <Link
-                href="/research"
-                className="inline-flex items-center justify-center px-8 py-3 rounded-lg border border-accent-secondary/50 text-accent-secondary font-body font-semibold text-sm transition-all hover:bg-accent-secondary/10 active:scale-95 duration-200"
-              >
-                Research Work
+              <Link href="/contact" className="btn-secondary-violet">
+                Get In Touch
               </Link>
             </motion.div>
 
@@ -202,12 +190,11 @@ export default function Hero() {
               </a>
             </motion.div>
 
-            {/* Status Line */}
-            <motion.div variants={itemVariants} className="text-sm text-text-muted pt-4">
-              <span className="mr-2">📄</span>
-              <span className="font-body">
-                Open to: <span className="text-text-primary font-medium">Director/Senior Manager roles</span> · <span className="text-text-primary font-medium">Applied Scientist</span> · <span className="text-text-primary font-medium">Research Engineer</span>
-              </span>
+            {/* Status Badge */}
+            <motion.div variants={itemVariants} className="pt-4">
+              <Link href="/contact" className="section-badge-primary">
+                Available for senior leadership roles and research collaborations
+              </Link>
             </motion.div>
           </motion.div>
 

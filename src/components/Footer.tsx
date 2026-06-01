@@ -5,12 +5,10 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-accent-primary/20 bg-bg-base">
+    <footer className="border-t border-white/10 bg-bg-base">
       <div className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          {/* Three Column Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-            {/* Column 1: Logo & Tagline */}
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-3 mb-12">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -18,22 +16,15 @@ export default function Footer() {
               transition={{ duration: 0.5 }}
             >
               <div className="flex items-center gap-1 mb-3">
-                <span className="font-display text-xl font-bold text-accent-primary">
-                  [
-                </span>
-                <span className="font-display text-xl font-bold text-text-primary">
-                  Ranjan Mishra
-                </span>
-                <span className="font-display text-xl font-bold text-accent-primary">
-                  ]
-                </span>
+                <span className="font-display text-xl font-bold text-accent">[</span>
+                <span className="font-display text-xl font-bold text-text">Ranjan Mishra</span>
+                <span className="font-display text-xl font-bold text-accent">]</span>
               </div>
-              <p className="font-body text-sm text-text-muted">
+              <p className="font-body text-sm text-text-muted leading-relaxed">
                 AI/ML leader building rigorous, production-ready decision intelligence systems.
               </p>
             </motion.div>
 
-            {/* Column 2: Quick Links */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -48,12 +39,12 @@ export default function Footer() {
                   { href: "/", label: "Home" },
                   { href: "/about", label: "About" },
                   { href: "/projects", label: "Projects" },
-                  { href: "/blog", label: "Blog" },
+                  { href: "/contact", label: "Contact" },
                 ].map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="block font-body text-sm text-text-muted hover:text-accent-primary transition-colors duration-200"
+                    className="block font-body text-sm text-text-muted transition-colors duration-200 hover:text-accent"
                   >
                     {link.label}
                   </Link>
@@ -61,7 +52,6 @@ export default function Footer() {
               </nav>
             </motion.div>
 
-            {/* Column 3: Currently Building */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -72,17 +62,13 @@ export default function Footer() {
                 Currently Building
               </h3>
               <p className="font-body text-sm text-text-muted leading-relaxed">
-                An open source Bayesian network structure learning library.
-                <br />
-                A blog on production LLM systems and epistemic rigor.
+                Open source systems for Bayesian structure learning, search workflows, and personal knowledge tracking.
               </p>
             </motion.div>
           </div>
 
-          {/* Divider */}
           <div className="border-t border-border-subtle my-8" />
 
-          {/* Copyright */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -96,7 +82,7 @@ export default function Footer() {
                 href="https://nextjs.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent-primary hover:text-accent-primary/80 transition-colors"
+                className="text-accent hover:text-accent/80 transition-colors"
               >
                 Next.js
               </a>{" "}
@@ -105,7 +91,7 @@ export default function Footer() {
                 href="https://vercel.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent-primary hover:text-accent-primary/80 transition-colors"
+                className="text-accent hover:text-accent/80 transition-colors"
               >
                 Vercel
               </a>

@@ -2,12 +2,15 @@ import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
+  output: "export",
+  trailingSlash: true,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "ranjan.dev",
+        hostname: "rjmishra.github.io",
       },
       {
         protocol: "https",

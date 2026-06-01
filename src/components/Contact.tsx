@@ -21,20 +21,19 @@ const ContactCard = ({ icon, label, value, href, index }: ContactCardProps) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ y: -8 }}
+      transition={{ duration: 0.45, delay: index * 0.08 }}
       className="group"
       aria-label={`${label}: ${value}`}
     >
-      <div className="h-full px-6 py-8 rounded-lg bg-bg-card border border-border-subtle shadow-black/10 hover:border-accent-primary/50 hover:shadow-xl hover:shadow-accent-primary/5 transition-all duration-300 flex flex-col items-center text-center">
-        <div className="mb-4 p-3 rounded-lg bg-accent-primary/10 group-hover:bg-accent-primary/20 transition-colors">
+      <div className="h-full w-full rounded-3xl border border-border-subtle bg-bg-card px-6 py-8 transition duration-200 hover:border-accent-primary/25 hover:bg-accent-primary/5 flex flex-col items-start text-left">
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-primary/10 transition-colors group-hover:bg-accent-primary/15">
           <div className="text-accent-primary">{icon}</div>
         </div>
-        <div className="flex items-center gap-1.5 font-body text-xs text-text-muted uppercase tracking-widest mb-2">
-          {label}
-          <ExternalLink size={13} className="text-accent-primary opacity-70" />
+        <div className="label-small mb-3 flex items-center gap-2">
+          <span>{label}</span>
+          <ExternalLink size={16} className="text-accent-primary opacity-70" />
         </div>
-        <p className="font-body font-semibold text-text-primary mb-4 group-hover:text-accent-primary transition-colors">
+        <p className="font-body text-base font-semibold text-text-primary mb-4 transition-colors group-hover:text-accent-primary">
           {value}
         </p>
       </div>
@@ -78,7 +77,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-bg-base">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-bg-base">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div
@@ -88,11 +87,14 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="font-display text-5xl md:text-6xl font-bold text-text-primary mb-4">
+          <div className="section-badge-primary mb-4 justify-center">
+            Get In Touch
+          </div>
+          <h2 className="page-title mb-4 section-title-accent">
             Let&apos;s Connect
           </h2>
-          <p className="font-body text-lg text-text-muted max-w-2xl mx-auto">
-            Open to Director/Senior Manager AI/ML opportunities and thought leadership conversations.
+          <p className="body-copy-lg max-w-2xl mx-auto">
+            Available for leadership roles, research collaborations, and speaking engagements.
           </p>
         </motion.div>
 
@@ -129,7 +131,7 @@ export default function Contact() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="bg-bg-card border border-border-subtle rounded-lg p-8"
         >
-          <p className="font-body text-center text-text-muted mb-6">
+          <p className="body-copy-muted text-center mb-6">
             I write about LLM systems, causal inference, and AI leadership.{" "}
             <span className="text-text-primary font-medium">Hit subscribe if that&apos;s your thing.</span>
           </p>

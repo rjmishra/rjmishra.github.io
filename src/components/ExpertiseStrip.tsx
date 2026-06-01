@@ -51,19 +51,19 @@ const ExpertiseCard = ({
       whileHover={{ y: -8 }}
       className="group relative"
     >
-      <div className="h-full px-6 py-8 rounded-lg bg-bg-card border border-border-subtle transition-all duration-300 group-hover:border-accent-primary/60 group-hover:bg-bg-card/80">
+      <div className="h-full px-6 py-8 rounded-lg bg-bg-card border border-border-subtle card-interactive group-hover:bg-bg-card/80">
         {/* Icon */}
         <div className="mb-4">
           <Icon className="w-8 h-8 text-accent-primary transition-transform duration-300 group-hover:scale-110" />
         </div>
 
         {/* Title */}
-        <h3 className="font-display text-lg font-semibold text-text-primary mb-2 group-hover:text-accent-primary transition-colors duration-300">
+        <h3 className="card-title mb-2 group-hover:text-accent-primary transition-colors duration-300">
           {title}
         </h3>
 
         {/* Description */}
-        <p className="font-body text-sm text-text-muted leading-relaxed">
+        <p className="body-copy-muted">
           {description}
         </p>
 
@@ -76,7 +76,7 @@ const ExpertiseCard = ({
 
 export default function ExpertiseStrip() {
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-bg-base">
+    <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-bg-base">
       <div className="max-w-6xl mx-auto">
         {/* Section Title */}
         <motion.div
@@ -86,14 +86,16 @@ export default function ExpertiseStrip() {
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-text-primary">
+          <div className="section-badge-primary mb-4">
+            Expertise
+          </div>
+          <h2 className="section-title section-title-accent">
             Where I Build & Lead
           </h2>
-          <div className="mt-2 h-1 w-20 bg-gradient-to-r from-accent-primary to-accent-secondary mx-auto rounded-full" />
+          <div className="mt-4 accent-underline mx-auto" />
         </motion.div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {expertise.map((item, index) => (
             <ExpertiseCard
               key={index}

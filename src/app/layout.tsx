@@ -19,8 +19,8 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Ranjan — AI & Decision Practioner",
-    default: "Ranjan — AI & Decision Practioner",
+    template: "%s | Ranjan — AI & Decision Intelligence",
+    default: "Ranjan — AI & Decision Intelligence",
   },
   description:
     "Data Science Manager and AI/ML Leader with 12+ years of experience specializing in LLM pipelines, causal inference, and production ML systems. Expertise in building scalable decision intelligence platforms and leading technical teams.",
@@ -38,18 +38,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://ranjan.dev",
-    siteName: "Ranjan — AI & Decision Practioner",
-    title: "Ranjan — AI & Decision Practioner",
+    url: "https://rjmishra.github.io",
+    siteName: "Ranjan — AI & Decision Intelligence",
+    title: "Ranjan — AI & Decision Intelligence",
     description:
       "Data Science Manager and AI/ML Leader with 12+ years of experience specializing in LLM pipelines, causal inference, and production ML systems.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ranjan — AI & Decision Practioner",
+    title: "Ranjan — AI & Decision Intelligence",
     description:
       "Data Science Manager and AI/ML Leader with 12+ years of experience specializing in LLM pipelines, causal inference, and production ML systems.",
-    creator: "@ranjan",
+    creator: "@rjmishra",
   },
 };
 
@@ -58,10 +58,10 @@ const jsonLdSchema = {
   "@type": "Person",
   name: "Ranjan Mishra",
   jobTitle: "Data Science Manager | AI/ML Leader",
-  url: "https://ranjan.dev",
+  url: "https://rjmishra.github.io",
   sameAs: [
     "https://linkedin.com/in/rjmishra",
-    "https://github.com/ranjan",
+    "https://github.com/rjmishra",
     "https://twitter.com/ranjan",
   ],
   knowsAbout: [
@@ -82,16 +82,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${syne.variable} ${dmSans.variable} antialiased`}
+      className={`${syne.variable} ${dmSans.variable} antialiased`}
     >
       <head>
-        <link rel="canonical" href="https://ranjan.dev" />
+        <link rel="canonical" href="https://rjmishra.github.io" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
         />
       </head>
-      <body className="bg-[#0B0F1A] text-[#F1F5F9]">
+      <body className="">
         <Navigation />
         <div className="flex flex-col min-h-screen">
           {children}

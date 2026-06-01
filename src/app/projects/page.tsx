@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ExternalLink } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 interface Project {
   id: string;
@@ -12,7 +11,6 @@ interface Project {
   description: string;
   keyDecisions: string[];
   github?: string;
-  blog?: string;
 }
 
 const projects: Project[] = [
@@ -27,34 +25,33 @@ const projects: Project[] = [
       "Simulated Annealing cooling schedule tuning (geometric vs exponential)",
       "BIC vs MDL scoring trade-off for model complexity penalties",
     ],
-    github: "https://github.com/ranjan/bayesian-structure-learner",
+    github: "https://github.com/rjmishra/bayesian-structure-learner",
   },
   {
-    id: "rca-pipeline",
-    title: "Root Cause Analysis Pipeline — Insurance Claims",
-    tags: ["Python", "AWS Bedrock", "Multi-Agent", "LLM"],
+    id: "hunt",
+    title: "Hunt",
+    tags: ["Open Source", "Search", "Developer Tooling"],
     description:
-      "Production-grade RCA system for roadside assistance transcripts featuring multi-agent architecture, epistemic validation (self-consistency sampling, adversarial probing, Platt scaling), ATE-based attribution, and counterfactual simulation.",
+      "Open source project focused on fast, practical search and discovery workflows. Built as a hands-on systems artifact with a bias toward useful automation and clean developer ergonomics.",
     keyDecisions: [
-      "Multi-agent vs monolithic LLM reasoning patterns",
-      "Epistemic validation: self-consistency vs adversarial probing trade-offs",
-      "Knowledge base mining strategies for RL/RAG pipeline integration",
+      "Search workflow ergonomics vs implementation complexity",
+      "Local-first utility patterns for fast iteration",
+      "Repository structure choices for maintainable open source work",
     ],
-    github: "https://github.com/ranjan/rca-pipeline",
-    blog: "https://ranjan.dev/blog/production-rca-systems",
+    github: "https://github.com/rjmishra/hunt",
   },
   {
-    id: "ai-assistant",
-    title: "Personal AI Assistant — Voice + Face",
-    tags: ["Python", "MLX", "React", "FastAPI"],
+    id: "readwise-tracker",
+    title: "Readwise Tracker",
+    tags: ["Readwise", "Automation", "Productivity"],
     description:
-      "Browser-based personal AI assistant with multi-LLM routing (OpenAI, Anthropic, Gemini, Ollama), cloned voice synthesis via OpenVoice v2, and animated talking face via LivePortrait. Optimized for Apple M2 Air with MLX-Whisper for on-device transcription.",
+      "Personal knowledge management utility for tracking Readwise activity and turning reading data into a more observable, reviewable workflow.",
     keyDecisions: [
-      "LiteLLM for provider abstraction and cost optimization",
-      "MLX vs CUDA trade-offs on Apple Silicon hardware",
-      "Voice synthesis latency vs quality with OpenVoice v2",
+      "Readable tracking views over raw exported data",
+      "Automation boundaries between capture, review, and reporting",
+      "Simple data model for long-term personal analytics",
     ],
-    github: "https://github.com/ranjan/ai-assistant",
+    github: "https://github.com/rjmishra/readwise-tracker",
   },
 ];
 
@@ -156,17 +153,6 @@ const ProjectCard = ({ project }: { project: Project }) => {
               GitHub
             </a>
           )}
-          {project.blog && (
-            <a
-              href={project.blog}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-accent-secondary hover:bg-accent-secondary/10 transition-colors duration-200 font-body text-sm font-medium"
-            >
-              <ExternalLink size={16} />
-              Blog Post
-            </a>
-          )}
         </div>
       </div>
     </motion.div>
@@ -177,7 +163,7 @@ export default function ProjectsPage() {
   return (
     <main className="flex-1 bg-bg-base">
       {/* Page Header */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -209,7 +195,7 @@ export default function ProjectsPage() {
             className="mt-16 text-center"
           >
             <a
-              href="https://github.com/ranjan"
+              href="https://github.com/rjmishra"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-lg bg-accent-primary/10 border border-accent-primary/50 text-accent-primary font-body font-semibold hover:bg-accent-primary/20 hover:border-accent-primary transition-all duration-200"

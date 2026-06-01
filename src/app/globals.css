@@ -1,24 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  /* Base palette — deeper, richer darks */
-  --color-bg-base: #060910;
-  --color-bg-surface: #0D1117;
-  --color-bg-card: #111827;
-  --color-bg-card-hover: #161f2e;
+  /* Light theme (default) */
+  --color-bg-base: #F8FAFC;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-card: #FFFFFF;
+  --color-bg-card-hover: #F3F4F6;
 
-  /* Accent — slightly more vivid teal + violet */
+  /* Accent — keep same tokens */
   --color-accent-primary: #0EB3A2;
   --color-accent-secondary: #7C6FE8;
   --color-accent-gold: #C9A84C;
 
-  /* Text */
-  --color-text-primary: #F0F6FC;
-  --color-text-secondary: #CBD5E1;
-  --color-text-muted: #6E7F96;
+  /* Text for light theme */
+  --color-text-primary: #0B1220;
+  --color-text-secondary: #334155;
+  --color-text-muted: #6B7280;
 
   /* Borders */
-  --color-border-subtle: #1C2A3A;
+  --color-border-subtle: #E6E9EE;
+  --color-border-medium: #D1D5DB;
+}
+
+/* Dark theme overrides */
+.dark {
+  --color-bg-base: #0B0F1A;
+  --color-bg-surface: #111827;
+  --color-bg-card: #111827;
+  --color-bg-card-hover: #161f2e;
+
+  --color-accent-primary: #0EB3A2;
+  --color-accent-secondary: #7C6FE8;
+  --color-accent-gold: #C9A84C;
+
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #94A3B8;
+
+  --color-border-subtle: #1E293B;
   --color-border-medium: #253348;
 }
 
@@ -89,6 +108,118 @@ button, a, input, textarea {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Typography utilities */
+.page-title {
+  @apply font-display text-5xl md:text-6xl font-bold leading-tight tracking-[-0.03em] text-text-primary;
+}
+
+.section-title {
+  @apply font-display text-3xl md:text-4xl font-semibold leading-tight tracking-tight text-text-primary;
+}
+.subsection-title {
+  @apply font-display text-2xl font-semibold leading-tight tracking-tight text-text-primary;
+}
+.card-title {
+  @apply font-display text-xl font-semibold leading-tight text-text-primary;
+}
+
+.body-copy {
+  @apply font-body text-base leading-7 text-text-secondary;
+}
+
+.body-copy-lg {
+  @apply font-body text-lg leading-8 text-text-secondary;
+}
+
+/* ===== Spacing System (Phase 4) =====
+   - Major sections: Use `py-24` on top-level `<section>` wrappers for consistent vertical rhythm.
+   - Subsections: Use `py-20` for smaller subsection wrappers when needed.
+   - Section headings/transitions: Use `mb-16` for the heading group that separates sections.
+   - Card grids: Prefer `gap-6` on medium layouts and `gap-8` on larger grids.
+   These rules are intentionally conservative to ensure a mature, readable rhythm across pages.
+*/
+
+.body-copy-muted {
+  @apply font-body text-sm leading-7 text-text-muted;
+}
+
+.label-small {
+  @apply font-body text-xs uppercase tracking-[0.24em] text-text-muted;
+}
+
+/* ===== Interaction Pattern Utilities (Phase 2) ===== */
+
+/* Pattern A: "Lift" — cards rise on hover with shadow */
+.card-lift {
+  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+}
+
+/* Pattern B: "Glow" — border brightens on hover */
+.card-glow {
+  @apply border border-border-subtle transition-all duration-300 hover:border-accent-primary;
+}
+
+/* Combine Lift + Glow for all cards */
+.card-interactive {
+  /* Explicitly compose the underlying utilities instead of applying custom classes */
+  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-border-subtle hover:border-accent-primary;
+}
+
+/* Pattern C: "Colorize" — text color transitions to accent on hover */
+.text-colorize {
+  @apply transition-colors duration-200 hover:text-accent-primary;
+}
+
+/* CTA button variants */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-8 py-3 rounded-lg bg-accent-primary text-bg-base font-body font-semibold text-sm transition-all duration-200 hover:bg-accent-primary/90 active:scale-95;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-8 py-3 rounded-lg border border-accent-primary/50 text-accent-primary font-body font-semibold text-sm transition-all duration-200 hover:bg-accent-primary/10 active:scale-95;
+}
+
+.btn-secondary-violet {
+  @apply inline-flex items-center justify-center px-8 py-3 rounded-lg border border-accent-secondary/50 text-accent-secondary font-body font-semibold text-sm transition-all duration-200 hover:bg-accent-secondary/10 active:scale-95;
+}
+
+/* ===== Visual Hierarchy Markers (Phase 3) ===== */
+
+/* Section title with accent left border */
+.section-title-accent {
+  @apply border-l-4 border-accent-primary pl-4;
+}
+
+.section-title-accent-secondary {
+  @apply border-l-4 border-accent-secondary pl-4;
+}
+
+.section-title-accent-gold {
+  @apply border-l-4 border-accent-gold pl-4;
+}
+
+/* Gradient accent underline */
+.accent-underline {
+  @apply h-1 w-20 bg-gradient-to-r from-accent-primary to-accent-secondary rounded-full;
+}
+
+/* Section badge pill */
+.section-badge {
+  @apply inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider border;
+}
+
+.section-badge-primary {
+  @apply inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider border bg-accent-primary/15 border-accent-primary/40 text-accent-primary;
+}
+
+.section-badge-secondary {
+  @apply inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider border bg-accent-secondary/15 border-accent-secondary/40 text-accent-secondary;
+}
+
+.section-badge-gold {
+  @apply inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider border bg-accent-gold/15 border-accent-gold/40 text-accent-gold;
 }
 
 /* Utility: subtle glass card */

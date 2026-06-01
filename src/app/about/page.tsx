@@ -90,11 +90,11 @@ const PhilosophyCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="p-6 rounded-lg bg-bg-card border border-border-subtle hover:border-accent-primary/50 transition-all duration-300"
+      className="p-6 rounded-lg bg-bg-card border border-border-subtle hover:border-accent-gold/50 transition-all duration-300"
     >
       <div className="flex items-start gap-4">
-        <div className="p-3 rounded-lg bg-accent-primary/10">
-          <Icon className="w-6 h-6 text-accent-primary" />
+        <div className="p-3 rounded-lg bg-accent-gold/10">
+          <Icon className="w-6 h-6 text-accent-gold" />
         </div>
         <div>
           <h3 className="font-display text-lg font-bold text-text-primary mb-2">
@@ -133,14 +133,14 @@ const TimelineItem = ({
     >
       {/* Left/Right Content */}
       <div className="flex-1">
-        <div className="p-6 rounded-lg bg-bg-card border border-border-subtle hover:border-accent-primary/50 transition-all duration-300">
-          <p className="font-display text-sm font-bold text-accent-primary uppercase tracking-widest mb-2">
+        <div className="p-6 rounded-lg bg-bg-card card-interactive hover:border-accent-gold/40">
+          <p className="label-small mb-2 text-accent-gold">
             {year}
           </p>
-          <h3 className="font-display text-xl font-bold text-text-primary mb-2">
+          <h3 className="card-title mb-2 text-colorize">
             {title}
           </h3>
-          <p className="font-body text-sm text-text-muted leading-relaxed">
+          <p className="body-copy-muted leading-relaxed">
             {description}
           </p>
         </div>
@@ -148,9 +148,9 @@ const TimelineItem = ({
 
       {/* Center Timeline Dot */}
       <div className="flex flex-col items-center">
-        <div className="w-4 h-4 rounded-full bg-accent-primary border-4 border-bg-base" />
+        <div className="w-4 h-4 rounded-full bg-accent-gold border-4 border-bg-base" />
         {index < total - 1 && (
-          <div className="w-1 h-20 md:h-32 bg-gradient-to-b from-accent-primary/50 to-accent-primary/0" />
+          <div className="w-1 h-20 md:h-32 bg-gradient-to-b from-accent-gold/50 to-accent-gold/0" />
         )}
       </div>
 
@@ -199,34 +199,40 @@ export default function AboutPage() {
 
   const timeline = [
     {
+      year: "2008",
+      title: "Started School in Computer Science",
+      description:
+        "Fell in love with algorithms, data structures, and the power of code to solve complex problems. Built a strong foundation in programming and software engineering.",
+    },
+    {
       year: "2012",
-      title: "Started in Data Science",
+      title: "First Job in working with Large Datasets",
       description:
-        "Built statistical modeling foundations. Learned that elegant theory means nothing without production rigor.",
+        "Built ETL pipelines and data warehouses for a major financial company, learning the importance of data quality, scalability, and real-world constraints in production systems.",
     },
     {
-      year: "2018",
-      title: "Real-Time Bayesian Network Engine",
+      year: "2015",
+      title: "Back to School for Master in CS",
       description:
-        "Engineered high-performance DAG structure learning in C++ for cybersecurity. First taste of systems-level ML.",
+        "Learned rigorous statistical inference, algorithms, and machine learning theory at Indian Statistical Institute. This mathematical grounding shaped my approach to production systems—when you understand the theory deeply, you make better engineering trade-offs.",
     },
     {
-      year: "2021+",
-      title: "LLM Pipelines & AI Governance",
+      year: "2017",
+      title: "Large Scale ML in Production - Cybersecurity",
       description:
-        "Transitioned to large language model systems, multi-agent orchestration, and building governance frameworks for production AI.",
+        "Built single-handedly production ML pipelines for real-time cyber threat detection for a startup. This was my first deep dive into the challenges of deploying ML at scale—data drift, latency constraints, and the importance of monitoring and feedback loops.",
     },
     {
-      year: "2024–Now",
-      title: "Production Decision Intelligence",
+      year: "2020",
+      title: "ML in HR Tech - Leading AI for Talent Acquisition",
       description:
-        "Leading AWS Bedrock pipelines, causal root cause analysis, open source research, and building teams to scale AI impact.",
+        "Led the development of AI-powered talent acquisition systems, leveraging machine learning to optimize hiring processes and improve candidate matching.",
     },
     {
-      year: "Next",
-      title: "Director / VP of AI & Decision Intelligence",
+      year: "2024 - Now",
+      title: "AI in Insurance - Building Decision Intelligence Systems",
       description:
-        "Building next-generation systems where AI drives mission-critical business decisions with epistemic rigor at scale.",
+        "Building production LLM pipelines, real-time fraud detection systems, and causal inference engines that drive millions in risk mitigation. Leading technical teams on building AI-powered decision intelligence systems that actually work in production—not just in notebooks.",
     },
   ];
 
@@ -248,7 +254,7 @@ export default function AboutPage() {
   return (
     <main className="flex-1 bg-bg-base">
       {/* Section 1: Bio Block */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-border-subtle">
+        <section className="py-24 px-4 sm:px-6 lg:px-8 border-b border-border-subtle">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Avatar */}
@@ -268,19 +274,19 @@ export default function AboutPage() {
               className="space-y-6"
             >
               <div className="space-y-4">
-                <p className="font-body text-lg text-text-muted leading-relaxed">
+                <p className="body-copy-lg leading-relaxed">
                   I&apos;m a Data Science Manager at a leading US insurance firm, where I build production LLM pipelines, 
-                  real-time fraud detection systems, and causal inference engines that drive millions in risk mitigation. 
-                  I lead technical teams on building AI-powered decision intelligence systems that actually work in production—not just in notebooks.
+                  realtime fraud detection systems, and causal inference engines that drive millions in risk mitigation. 
+                  I lead technical teams on building AI powered decision intelligence systems that actually work in production, not just in notebooks.
                 </p>
 
-                <p className="font-body text-lg text-text-muted leading-relaxed">
+                <p className="body-copy-lg leading-relaxed">
                   My technical identity bridges rigorous statistical foundations with modern LLM engineering. 
-                  I believe in &quot;AI-powered decision intelligence&quot;—the intersection of causal reasoning, Bayesian thinking, 
-                  and production-grade orchestration. Epistemic rigor matters: every model claim should come with calibrated confidence.
+                  I believe in <q>AI powered decision intelligence, the intersection of causal reasoning, Bayesian thinking, 
+                  and production-grade orchestration</q>. Epistemic rigor matters: every model claim should come with calibrated confidence.
                 </p>
 
-                <p className="font-body text-lg text-text-muted leading-relaxed">
+                <p className="body-copy-lg leading-relaxed">
                   I&apos;m actively building: open source Bayesian network research libraries, public writing on production ML systems, 
                   and leading teams toward a vision of trustworthy, interpretable AI at enterprise scale. Moving toward Director/VP 
                   of AI & Decision Intelligence.
@@ -288,8 +294,8 @@ export default function AboutPage() {
               </div>
 
               <div className="pt-4">
-                <p className="font-display text-sm font-bold text-accent-primary uppercase tracking-widest mb-3">
-                  12+ years in data science and AI engineering
+                <p className="label-small mb-3 text-accent-primary font-bold">
+                  12+ years in  data science and AI engineering
                 </p>
               </div>
             </motion.div>
@@ -298,19 +304,22 @@ export default function AboutPage() {
       </section>
 
       {/* Section 2: How I Think */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-border-subtle">
+        <section className="py-24 px-4 sm:px-6 lg:px-8 border-b border-border-subtle">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-12"
+            className="mb-16"
           >
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-text-primary">
+            <div className="section-badge-primary mb-4">
+              Philosophy
+            </div>
+            <h2 className="section-title section-title-accent">
               How I Think
             </h2>
-            <p className="font-body text-lg text-text-muted mt-4">
+            <p className="body-copy-lg mt-4">
               Three core principles that guide my approach to AI and ML systems.
             </p>
           </motion.div>
@@ -330,7 +339,7 @@ export default function AboutPage() {
       </section>
 
       {/* Section 3: Journey Timeline */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-border-subtle">
+        <section className="py-24 px-4 sm:px-6 lg:px-8 border-b border-border-subtle">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -339,10 +348,13 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-text-primary">
+            <div className="section-badge-primary mb-4">
+              Timeline
+            </div>
+            <h2 className="section-title section-title-accent">
               My Journey
             </h2>
-            <p className="font-body text-lg text-text-muted mt-4">
+            <p className="body-copy-lg mt-4">
               From statistical foundations to production decision intelligence.
             </p>
           </motion.div>
@@ -363,19 +375,22 @@ export default function AboutPage() {
       </section>
 
       {/* Section 4: Tech Stack */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-border-subtle">
+        <section className="py-24 px-4 sm:px-6 lg:px-8 border-b border-border-subtle">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-12"
+            className="mb-16"
           >
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-text-primary">
+            <div className="section-badge-primary mb-4">
+              Stack
+            </div>
+            <h2 className="section-title section-title-accent">
               Tools & Stack
             </h2>
-            <p className="font-body text-lg text-text-muted mt-4">
+            <p className="body-copy-lg mt-4">
               Technologies I work with daily to build production AI systems.
             </p>
           </motion.div>
@@ -395,7 +410,7 @@ export default function AboutPage() {
       </section>
 
       {/* Section 5: Education */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -404,7 +419,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="p-8 rounded-lg bg-bg-card border border-border-subtle"
           >
-            <h2 className="font-display text-2xl font-bold text-text-primary mb-4">
+            <h2 className="subsection-title mb-4">
               Education
             </h2>
             <div className="space-y-3">
@@ -412,7 +427,7 @@ export default function AboutPage() {
                 Master&apos;s Degree, Computer Science
               </p>
               <p className="font-body text-base text-text-muted">
-                Tier-1 Institute in India
+                Indian Statistical Institute (ISI), Kolkata
               </p>
               <p className="font-body text-sm text-text-muted leading-relaxed mt-4 pt-4 border-t border-border-subtle">
                 Foundational training in machine learning, statistical inference, and algorithms. 

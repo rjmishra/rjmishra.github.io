@@ -12,15 +12,22 @@ export default {
         // Base colors
         'bg-base': '#0B0F1A',
         'bg-surface': '#111827',
-        'bg-card': '#1A2235',
-        // Accent colors
-        'accent-primary': '#14B8A6',
-        'accent-secondary': '#6366F1',
+        'bg-card': '#111827',
+        'bg-card-hover': '#161f2e',
+        // Accent colors — 3-tier system
+        // Primary (Teal #0EB3A2): CTAs, hero, main interactions, primary section titles
+        'accent-primary': '#0EB3A2',
+        // Secondary (Violet #7C6FE8): research, alternative emphasis, secondary sections
+        'accent-secondary': '#7C6FE8',
+        // Tertiary (Gold #C9A84C): special highlights, research artifacts, premium badges
+        'accent-gold': '#C9A84C',
         // Text colors
         'text-primary': '#F1F5F9',
+        'text-secondary': '#CBD5E1',
         'text-muted': '#94A3B8',
         // Border colors
         'border-subtle': '#1E293B',
+        'border-medium': '#253348',
       },
       fontFamily: {
         display: ['var(--font-syne)', 'system-ui', 'sans-serif'],
